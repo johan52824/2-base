@@ -1,0 +1,11 @@
+exports = function(changeEvent) {
+  const docId = changeEvent.documentKey._id;
+  const fullDocument = changeEvent.fullDocument;
+  const VEHICULO = context.services.get("mongodb-atlas").db("BOMBEROS").collection("Vehiculo");
+  const manten = context.services.get("mongodb-atlas").db("BOMBEROS").collection("Mantenimiento");
+  const VehiculoConsultado = VEHICULO.findOne({FechaUlt: fullDocument.FechaUlt});
+  
+  if(VehiculoConsultado.UltmMan<=10){
+    const mantenimiento = deleteOne({_id:docId})
+  }
+};
